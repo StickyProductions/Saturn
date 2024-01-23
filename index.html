@@ -19,6 +19,7 @@
 
     header {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       background: linear-gradient(to right, #000000, #000000);
@@ -32,8 +33,25 @@
     }
 
     #logo img {
-      width: 40px; /* Adjust the width as needed */
+      width: 40px;
       margin-right: 10px;
+    }
+
+    #tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tab-button {
+      cursor: pointer;
+      padding: 10px 15px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      background-color: transparent;
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
     }
 
     #tabContainer {
@@ -51,16 +69,16 @@
       display: flex;
     }
 
-    .tab-button {
-      cursor: pointer;
-      padding: 10px 15px;
-      border: 2px solid #ccc;
-      border-radius: 10px;
-      margin-right: 5px;
-      background-color: transparent;
-      color: white;
-      text-decoration: none; /* Remove default underline for anchor tags */
-      font-size: 16px; /* Adjust the font size as needed */
+    @media screen and (max-width: 600px) {
+      #tabs {
+        flex-direction: column;
+      }
+
+      .tab-button {
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 5px;
+      }
     }
   </style>
 </head>
@@ -68,11 +86,11 @@
 
 <header>
   <div id="logo">
-    <img src="saturn2-removebg-preview.png" alt="Logo"> <!-- Replace 'your-logo.png' with the path to your logo image -->
+    <img src="saturn2-removebg-preview.png" alt="Logo">
     <span>Saturn</span>
   </div>
   
-  <div>
+  <div id="tabs">
     <button class="tab-button" onclick="showTab('tab1')">Home</button>
     <a href="https://discord.gg/hzx3cqp9ua" class="tab-button">Discord</a>
     <button class="tab-button" onclick="showTab('tab3')">Services</button>
@@ -99,15 +117,11 @@
 </div>
 
 <script>
-  // You can keep the existing script for tab switching if needed
   function showTab(tabId) {
-    // Hide all tabs
     var tabs = document.getElementsByClassName('tab-content');
     for (var i = 0; i < tabs.length; i++) {
       tabs[i].classList.remove('active-tab');
     }
-
-    // Show the selected tab
     document.getElementById(tabId).classList.add('active-tab');
   }
 </script>
